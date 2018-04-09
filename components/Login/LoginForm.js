@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Button,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
   StatusBar,
   Text,
   TextInput,
-  TouchableOpacity,
   View
 } from 'react-native';
 
@@ -31,9 +31,12 @@ export default class LoginForm extends Component{
                     secureTextEntry
                     style={styles.input}
                     />
-                    <TouchableOpacity style={styles.buttonContainer}>
-                        <Text style={styles.buttonText}>Login</Text>
-                    </TouchableOpacity>
+                    <Button 
+                            onPress = {() =>
+                            this.props.navigation.navigate('Home')}
+                            style={styles.buttonContainer}
+                            title="Login"
+                    />
             </KeyboardAvoidingView>
         );
     }
