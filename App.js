@@ -5,42 +5,33 @@
  */
 
 import React, { Component } from 'react';
-import {
-   AppRegistry,
-   Platform,
-   StyleSheet,
-   Text,
-   View
-} from 'react-native';
-
+import {AppRegistry, Platform, StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import {DrawerNavigator} from 'react-navigation';
+
 
 
 import Login from './components/Login/Login';
 import Home from './components/Dashboard/Home';
+import Screen1 from './components/Dashboard/DrawScreen1';
 
 
-export default class App extends Component {
-  render() {
-    return (
-        <AppNavigator />
-    );
-  }
-}
-
-const AppNavigator = StackNavigator({
+export const App = StackNavigator({
   LoginScreen: {screen: Login },
-  HomeScreen: { screen: Home }
+  HomeScreen: { screen: Home },
+},
+{
+  headerMode: 'none',
+  initialRouteName: 'LoginScreen',
+}
+);
+
+export const Drawer = DrawerNavigator({
+  HomeScreen: {
+      screen: Home
+  },
+  DrawScreen1: {
+    screen: Screen1
+  }
 })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f6f6f6'
-  }
-  
-});
-
-AppRegistry.registerComponent('App', () => App);

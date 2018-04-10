@@ -6,13 +6,19 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
+  KeyboardAvoidingView,
+  TextInput
 } from 'react-native';
 
-import LoginForm from'../Login/LoginForm';
+import { StackNavigator } from 'react-navigation';
+
  
 export default class Login extends Component{
+
     render(){
+            const { navigate } = this.props.navigation; 
         return(
             <View style={styles.container}>
                 <View style={styles.logoContainer}>
@@ -25,7 +31,27 @@ export default class Login extends Component{
                                 <Text style={styles.logoTitle}>Courier App (TEST)</Text>
                 </View>
             <View style={styles.formContainer}>
-            <LoginForm />
+
+<KeyboardAvoidingView behavior="padding">
+            
+                <TextInput
+                    placeholder="Username or email"
+                    placeholderTextColor='rgba(225,225,225,0.7)'
+                    returnKeyType="next"
+                    style={styles.input}
+                    />
+                <TextInput 
+                    placeholder="Password"
+                    placeholderTextColor='rgba(225,225,225,0.7)'
+                    returnKeyType="go"
+                    secureTextEntry
+                    style={styles.input}
+                    />
+                    <Button
+                             title= 'Log In'
+                             onPress={() => this.props.navigation.navigate('HomeScreen')}           />
+            </KeyboardAvoidingView>
+
             </View>
             </View>
         );
@@ -37,9 +63,11 @@ AppRegistry.registerComponent('Login', () => Login);
 
 const styles = StyleSheet.create({
     container: {
+        display: 'flex',
         flex: 1, 
         backgroundColor: '#4b6584',
-        alignItems: 'stretch',
+        alignItems: 'center',
+        justifyContent: 'center',
         paddingLeft: 120,
         paddingRight: 120,
         paddingVertical: 40
@@ -69,6 +97,24 @@ const styles = StyleSheet.create({
         width: 160,
         textAlign: 'center',
         opacity: 0.9
+    },
+    input: {
+        height: 40,
+        width: 200,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        marginBottom: 20,
+        color: '#FFF',
+        paddingHorizontal: 10
+    },
+    buttonContainer:{
+        backgroundColor: '#2980b6',
+        paddingVertical: 10
+    },
+
+    buttonText:{
+        textAlign: 'center',
+        color: '#FFFFFF',
+        fontWeight: '700'
     }
      
 
