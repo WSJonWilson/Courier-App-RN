@@ -6,32 +6,39 @@
 
 import React, { Component } from 'react';
 import {AppRegistry, Platform, StyleSheet, Text, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import {DrawerNavigator} from 'react-navigation';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
 
 
-
-import Login from './components/Login/Login';
+import {isSignedIn} from './components/Login/Auth';
+import SignIn from './components/Login/SignIn';
 import Home from './components/Dashboard/Home';
-import Screen1 from './components/Dashboard/DrawScreen1';
+import {createRootNavigator} from './components/Navigation/Navigation';
 
+export default class App extends Component{
 
-export const App = StackNavigator({
-  LoginScreen: {screen: Login },
-  HomeScreen: { screen: Home },
-},
-{
-  headerMode: 'none',
-  initialRouteName: 'LoginScreen',
-}
-);
+  constructor(props) {
+    super(props);
 
-export const Drawer = DrawerNavigator({
-  HomeScreen: {
-      screen: Home
-  },
-  DrawScreen1: {
-    screen: Screen1
+    this.state = {
+      signedIn: false,
+      checkedSignIn: false
+    };
   }
-})
 
+  componentDidMount(){
+    isSignedIn()
+      .then(res => this.setState({ signedIn: res, checkedSignIn: true}))
+      .catch(() => alert("An error occured"));
+  }
+
+  render(){
+    const {checkedSignIn, signedIn } = this.state;
+
+    if(!checkedSignIn){
+      return null;
+    }
+   
+    const Layout = createRootNavigator(signedIn);
+      return <Layout /> 
+}
+}
