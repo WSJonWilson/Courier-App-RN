@@ -3,6 +3,10 @@ import { Platform, StatusBar, StyleSheet } from "react-native";
 import SignIn from '../Login/SignIn';
 import Home from '../Dashboard/Home';
 import Settings from '../Dashboard/Settings';
+import StartDeliveries from '../Dashboard/StartDeliveries';
+import ManagePayments from '../Dashboard/ManagePayments';
+import DrawerContainer from '../Navigation/DrawContainer';
+
 import { Icon, Button, Container, Header, Content, Left, Right } from 'native-base';
 import { StackNavigator, DrawerNavigator, DrawerItems, SwitchNavigator, TabNavigator, SafeAreaView  } from 'react-navigation';
 
@@ -21,6 +25,16 @@ export const SignedOut = StackNavigator({
   }
   );
 
+
+
+ /*  export const Settings = StackNavigator({
+
+
+******** Settings List *********
+ 
+
+  })
+*/ 
 export const SignedIn = DrawerNavigator(
     {
       Home: {
@@ -30,32 +44,48 @@ export const SignedIn = DrawerNavigator(
       Settings: {
         screen: Settings,
 
+      },
+      StartDeliveries: { 
+        screen: StartDeliveries
+      },
+      ManagePayments:{
+        screen: ManagePayments,
       }
     },
+
     {
       initialRouteName: 'Home',
     drawerPosition: 'left',
-    contentComponent: CustomDrawerContentComponent,
+    contentComponent: DrawerContainer,
     drawerOpenRoute: 'DrawerOpen',
     drawerCloseRoute: 'DrawerClose',
-    drawerToggleRoute: 'DrawerToggle'
-    });
+    drawerToggleRoute: 'DrawerToggle',
+    gesturesEnabled: false,
+    headerStyle: {backgroundColor: '#45aaf2'},
 
-
-export const CustomDrawerContentComponent = (props) => (
-
-      <Container>
-        <Header style={styles.drawerHeader}>
-          <Body>
-          </Body>
-        </Header>
-        <Content>
-          <DrawerItems {...props} />
-        </Content>
     
-      </Container>
-    
-    );
+ });
+
+ const DrawerNavigation = StackNavigator({
+  SignedIn: { screen: SignedIn }
+}, {
+  headerMode: 'float',
+  navigationOptions: ({navigation}) => ({
+    //headerStyle: {backgroundColor: 'green'},
+    title: 'Logged In to your app!',
+    gesturesEnabled: false,
+    headerLeft: <Text onPress={() => {
+      // Coming soon: navigation.navigate('DrawerToggle')
+      // https://github.com/react-community/react-navigation/pull/2492
+      if (navigation.state.index === 0) {
+        navigation.navigate('DrawerOpen')
+      } else {
+        navigation.navigate('DrawerClose')
+      }
+    }}>Menu</Text>
+  })
+})
+
 
 export const createRootNavigator = (signedIn = false) => {
   return SwitchNavigator(

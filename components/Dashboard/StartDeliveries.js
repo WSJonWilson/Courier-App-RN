@@ -5,16 +5,25 @@ import { Icon, Button, Container, Header, Content, Left, Right } from 'native-ba
 import CustomHeader from './CustomHeader';
 
 
-export default class Settings extends React.Component {
-
+export default class StartDeliveries extends React.Component {
+    static navigationOptions = ({ navigation }) => ({
+        title: "Start Deliveries",
+        headerLeft: 
+                    <Icon name="menu" size={20} 
+                          style={{ paddingLeft: 10 }}
+                          onPress={() => navigation.navigate('DrawerOpen')} 
+                    />,
+    
+        drawerLabel: 'Start Deliveries'
+      })
   render() {
     return (
 
 <Container style={styles.container}>
-        <CustomHeader title="Settings" drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
+        <CustomHeader title="Start Deliveries" drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
 
         <Content
-          contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>   
+          contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>  
 
       <Button
         buttonStyle={{ marginTop: 20 }}
@@ -33,7 +42,6 @@ export default class Settings extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#487eb0'
-    
+    backgroundColor: '#487eb0',
   },
 })

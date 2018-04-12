@@ -20,16 +20,23 @@ class Home extends Component {
   render() {
     return (
 
-      <Container>
+      <Container style={styles.container}>
         <CustomHeader title="Home" drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
         <Content
-          contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+          contentContainerStyle={{ flex: 1}}>
+
+        <Card>
+        </Card>
+        <Card>
+        </Card>
+        <Card>
+        </Card>
           <Button
             onPress={() => this.props.navigation.navigate('Settings')} full>
             <Text style={{ color: 'white' }}>Go To Settings Screen</Text>
           </Button>
-        </Content>
 
+        </Content>
       </Container>
 
     )
@@ -41,6 +48,9 @@ export default Home;
 
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor: '#487eb0'
+  },
   icon: {
     width: 24,
     height: 24,

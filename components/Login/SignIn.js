@@ -45,7 +45,6 @@ export default ({ navigation }) => (
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
       <Text style={styles.forgotPassword}>Forgot Password?</Text>
-
   </View>
         );
 
