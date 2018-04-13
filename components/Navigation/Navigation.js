@@ -6,6 +6,7 @@ import Settings from '../Dashboard/Settings';
 import StartDeliveries from '../Dashboard/StartDeliveries';
 import ManagePayments from '../Dashboard/ManagePayments';
 import DrawerContainer from '../Navigation/DrawContainer';
+import GMap from '../Dashboard/Map'
 
 import { Icon, Button, Container, Header, Content, Left, Right } from 'native-base';
 import { StackNavigator, DrawerNavigator, DrawerItems, SwitchNavigator, TabNavigator, SafeAreaView  } from 'react-navigation';
@@ -50,7 +51,10 @@ export const SignedIn = DrawerNavigator(
       },
       ManagePayments:{
         screen: ManagePayments,
-      }
+      },
+      GMap:{
+        screen: GMap
+      },
     },
 
     {
@@ -65,18 +69,20 @@ export const SignedIn = DrawerNavigator(
 
     
  });
-
+ 
+/*
  const DrawerNavigation = StackNavigator({
   SignedIn: { screen: SignedIn }
 }, {
   headerMode: 'float',
   navigationOptions: ({navigation}) => ({
     //headerStyle: {backgroundColor: 'green'},
+    
     title: 'Logged In to your app!',
     gesturesEnabled: false,
     headerLeft: <Text onPress={() => {
-      // Coming soon: navigation.navigate('DrawerToggle')
-      // https://github.com/react-community/react-navigation/pull/2492
+      
+      
       if (navigation.state.index === 0) {
         navigation.navigate('DrawerOpen')
       } else {
@@ -85,6 +91,8 @@ export const SignedIn = DrawerNavigator(
     }}>Menu</Text>
   })
 })
+
+*/
 
 
 export const createRootNavigator = (signedIn = false) => {

@@ -26,56 +26,87 @@ export default class DrawerContainer extends React.Component {
 
 {/* Drawer Body */}
 
-    <View>
+    <View style={styles.menuItem}>
+    <Icon name="home" 
+                  size={20}  
+                  style={styles.icon}/>
       <Text
         onPress={() => navigation.navigate('Home')}
         style={styles.drawerItem}>
-        <Icon name="home" 
-                  size={20}  
-                  style={styles.icon}/>
         Home
       </Text>
     </View>
+
+
     <View style={styles.line}>
-        </View>
+    </View>
+
+   <View style={styles.menuItem}>
+   <Icon name="payment" 
+                  size={20}
+                  style={styles.icon}/>
       <Text
         onPress={() => navigation.navigate('ManagePayments')}
         style={styles.drawerItem}>
-            <Icon name="payment" 
-                  size={20}
-                  style={styles.icon}/>
         Manage Payments
       </Text>
+  </View>
       <View style={styles.line}>
         </View>
+
+     <View style={styles.menuItem}>
+     <Icon name="card-giftcard" 
+                 size={20} 
+                 style={styles.icon} />
       <Text
         onPress={() => navigation.navigate('StartDeliveries')}
         style={styles.drawerItem}>
-           <Icon name="card-giftcard" 
-                 size={20} 
-                 style={styles.icon} />
         Start Deliveries
       </Text>
+      </View>
+
       <View style={styles.line}>
-        </View>
+      </View>
+
+      <View style={styles.menuItem}>
+<Icon name="place" 
+                size={20}
+                style={styles.icon}/>
+      <Text
+        onPress={() => navigation.navigate('GMap')}
+        style={styles.drawerItem}>
+        Find Route
+      </Text>
+      </View>
+      
+      <View style={styles.line}>
+      </View>
+
+ <View style={styles.menuItem}>
+ <Icon name="settings" 
+              size={20} 
+              style={styles.icon}/>
       <Text
         onPress={() => navigation.navigate('Settings')}
         style={styles.drawerItem}>
-          <Icon name="settings" 
-              size={20} 
-              style={styles.icon}/>
         Settings
       </Text>
-      <View style={styles.line}>
-        </View>
+</View>
+  
+
+<View style={styles.menuItem}>
+<Icon name="power-settings-new" 
+                size={20}
+                style={styles.icon}/>
       <Text
         onPress={() => navigation.navigate('LogOut')}
         style={styles.drawerItem}>
-          <Icon name="power-settings-new" 
-                size={20}
-                style={styles.icon}/>
         Logout
       </Text>
+      </View>
+<View style={styles.line}>
+      </View>
+      
     </View>
     )
   }
@@ -116,13 +147,22 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   icon:{
-    padding: 15,
-    margin: 10,
-    textAlign: 'left'
+    width: 28,
+    height: 28,
+    marginLeft: 5
   },
   line: {
     borderBottomColor: '#d1d8e0',
     borderBottomWidth: 1,
+  },
+  menuItem:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width: 210,
+    //padding: 5,
+    //borderRadius: 3,
+    //marginTop: 10
   }
 
 
